@@ -21,7 +21,7 @@ public class App {
                                         | --> RESISTOR COLOUR CODE DECODER <-- |
                                         ========================================
                         """);
-        int lineCount;
+        int lineCount, toleranceValueLineNo, exponentValueLineNo;
         boolean iter = true;
         while (iter) {
             while (true) {
@@ -34,12 +34,20 @@ public class App {
                 }
             }
             switch (lineCount) {
-                case 4 -> processValues(4, 4, 3);
-                case 5 -> processValues(5, 5, 4);
-                case 6 -> processValues(6, 5, 4);
+                case 4 -> {
+                    toleranceValueLineNo = 4;
+                    exponentValueLineNo = 3;
+                    processValues(lineCount, toleranceValueLineNo, exponentValueLineNo);
+                }
+                case 5, 6 -> {
+                    toleranceValueLineNo = 5;
+                    exponentValueLineNo = 4;
+                    processValues(lineCount, toleranceValueLineNo, exponentValueLineNo);
+                }
                 default -> System.out.println(
                         "\n~ Error: Incorrect Input\n\t(!) Line count for a resistor should be 4, 5 or 6"
                 );
+
             }
             System.out.print("\n Exit (y/n) : ");
             iter = read.next().equalsIgnoreCase("n");
@@ -52,17 +60,12 @@ public class App {
         String ppmValue = inputColourList.getLast();
         inputColourList.removeLast();
         decodedValues = ColourCodeDecoder.decode(toleranceValueLineNo, lineCount, inputColourList);
-        // System.out.println(decodedValues);
         resistance = ColourCodeDecoder.getResistance(exponentValueLineNo, decodedValues);
-        // System.out.println(resistance);
         toleranceRatio = decodedValues.get(toleranceValueLineNo - 1);
-        // System.out.println(toleranceRatio);
         tolerances = ColourCodeDecoder.getTolerance(toleranceRatio, resistance);
-        // System.out.println(tolerances);
         ArrayList<String> newResistanceValues = ColourCodeDecoder.convToSubUnit(
                 new ArrayList<>(Arrays.asList(resistance, tolerances.get(0), tolerances.get(1)))
         );
-        // System.out.println(newResistanceValues);
 
 
         System.out.printf(
