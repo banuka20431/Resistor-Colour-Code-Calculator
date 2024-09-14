@@ -1,0 +1,39 @@
+{
+  "colours": [
+    "black",
+    "brown",
+    "red",
+    "orange",
+    "yellow",
+    "green",
+    "blue",
+    "purple",
+    "grey",
+    "white"
+  ],
+  "subUnits": {
+    "Ohm" : 1,
+    "Kohm" : 3,
+    "Mohm" : 6,
+    "Gohm" : 9,
+    "Tohm" : 12
+  },
+  "tolerance": {
+    "brown": 1,
+    "red": 2,
+    "green": 0.5,
+    "blue": 0.25,
+    "purple": 0.1,
+    "grey": 0.05,
+    "gold": 5,
+    "silver": 10
+  },
+  "ppm": {
+    "brown" : 100,
+    "red" : 50,
+    "orange" : 15,
+    "yellow" : 25,
+    "blue" : 10,
+    "purple" : 5
+  }
+}
